@@ -89,8 +89,7 @@ if __name__ == '__main__':
     center = (41.904, -87.662)
     routes = np.load("routes_data.npy", allow_pickle = True).tolist()
     head = "https://api.mapbox.com/directions/v5/mapbox/driving/"
-    tail = "?geometries=geojson&access_token=pk.eyJ1IjoicmFoaW1yYXNvb2wiLCJhIjoiY2th\
-    MHR0dzNvMDVjeDNlbjJuMWMxdWFqYyJ9.uIpUGacDLzUde2oLXfGUdw"
+    tail = "?geometries=geojson&access_token=pk.eyJ1IjoicmFoaW1yYXNvb2wiLCJhIjoiY2twZnR0aTYyMGFvNTJwcXBnNGZpM3AybCJ9.976YcOT1SrhjSyolq3ijsg"
     
     locations, counts = get_loc(routes, data, center)
     map = generate_map(locations, counts,head, tail, center)

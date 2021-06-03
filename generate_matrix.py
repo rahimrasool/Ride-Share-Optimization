@@ -16,7 +16,7 @@ def get_data(file):
     clus_data = pd.read_csv(file)
     # removing routes with large number of passenger to simplify processing
     clus_data = clus_data.drop(clus_data[clus_data.trips_per_day>30].index)
-    clus_data.drop(['pickup_nbors','dropoff_nbors','Unnamed: 0','Freq'], \
+    clus_data.drop(['pickup_nbors','dropoff_nbors','Freq'], \
     axis = 1, inplace = True)
     # Change location data from string to tuples of float
     clus_data['pickup_latlon'] = clus_data['pickup_latlon'].apply(lambda x: \
@@ -36,8 +36,7 @@ def return_dist(a, b):
     '''
 
     # The API Key is Public
-    token = "pk.eyJ1IjoicmFoaW1yYXNvb2wiLCJhIjoiY2thMHR0dzNvMDVjeDNlbjJuMWMxdWFqYyJ9.\
-    uIpUGacDLzUde2oLXfGUdw"
+    token = "pk.eyJ1IjoicmFoaW1yYXNvb2wiLCJhIjoiY2twZnR0aTYyMGFvNTJwcXBnNGZpM3AybCJ9.976YcOT1SrhjSyolq3ijsg"
     head = "https://api.mapbox.com/directions/v5/mapbox/driving/"
     tail = "?annotations=distance&access_token=" #Add token at the end of this
     request = head + str(a[1]) + ',' + str(a[0]) + ';' + str(b[1]) + ',' + str(b[0]) \
@@ -112,9 +111,9 @@ def get_distance_matrices(clus_data, center, num):
     np.save('capacity_arr_100', capacity)
 
 if __name__ == '__main__':
-    data = get_data("clusters/clusterdf_8.csv")
+    data = get_data("clustered_data.csv")
     center = avg_center(data, 100)
     get_distance_matrices(data, center, num = 100)
     ## Save dataframe as csv
-    data.to_csv('clus_data.csv')
+    data.to_csv('clustered_data_updated.csv')
     print("200x200 Distanc matrix has been successfully created")
